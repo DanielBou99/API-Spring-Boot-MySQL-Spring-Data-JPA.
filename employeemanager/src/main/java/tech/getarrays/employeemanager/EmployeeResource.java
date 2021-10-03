@@ -8,7 +8,7 @@ import tech.getarrays.employeemanager.service.EmployeeService;
 
 import java.util.List;
 
-@RestController
+@RestController // @Controller + @ResponseBody para controlar as requisições e responder a solicitação
 @RequestMapping("/employee")
 public class EmployeeResource {
     private final EmployeeService employeeService;
@@ -20,13 +20,13 @@ public class EmployeeResource {
     @GetMapping("/all")
     public ResponseEntity<List<Employee>> getAllEmployees(){
         List<Employee> employees = employeeService.findAllEmployees();
-        return new ResponseEntity<>(employees, HttpStatus.OK);
+        return new ResponseEntity<>(employees, HttpStatus.OK); /*ResponseEntity para retornar HTTP inteira (cod. status, cabeçalhos e corpo)*/
     }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long id){
         Employee employee = employeeService.findEmployeeById(id);
-        return new ResponseEntity<>(employee, HttpStatus.OK);
+        return new ResponseEntity<>(employee, HttpStatus.OK); 
     }
 
     @PostMapping("/add")
